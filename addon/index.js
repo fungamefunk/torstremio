@@ -4,7 +4,15 @@ import serverless from './serverless.js';
 import { manifest } from './lib/manifest.js';
 import { initBestTrackers } from './lib/magnetHelper.js';
 
+const express = require("express");
 const app = express();
+app.get("/manifest.json", (req, res) => 
+  {res.json({
+    id: "torrentio",
+    name: "Torrentio",
+    version: "1.0.0"
+  });
+  });
 app.enable('trust proxy');
 app.use(swStats.getMiddleware({
   name: manifest().name,
